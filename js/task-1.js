@@ -1,15 +1,20 @@
-const itemEl = document.querySelectorAll('.item');
-console.log(itemEl);
-const categoryList = `'В списке ${itemEl.length} категории.'`;
-console.log(categoryList);
-const category = array => {
-    array.forEach(element => {
-        const titleText = element.querySelector('h2');
+const allItems = [...document.querySelectorAll('li.item')];
+console.log(`В списке ${allItems.length} категории`);
 
-        const itemEl = element.querySelectorAll('li');
-
-        const output = `Категория: ${titleText.textContent}. Количество элементов: ${itemEl.length}.`;
-        console.log(output);
+allItems
+    .map(item => {
+        const titleEl = item.querySelector('h2');
+        const listEl = item.querySelectorAll('ul li');
+        return {
+            titleEl: titleEl.textContent,
+            result: listEl.length,
+        };
+    })
+    .forEach(entry => {
+        console.log(
+            'Категория: ',
+            entry.titleEl,
+            '\r\nКоличество элементов:',
+            entry.result
+        );
     });
-};
-category(itemEl);
